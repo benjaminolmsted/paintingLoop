@@ -1,0 +1,358 @@
+/* Museum-like clean and minimal styling */
+:root {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 300;
+  
+  color: #2c2c2c;
+  background-color: #fafafa;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.museum-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.quadrant-grid {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  grid-template-rows: 1fr 24px 1fr;
+  grid-template-areas: 
+    "image . prompt"
+    ". . ."
+    "description . critic";
+  gap: 0;
+  max-width: 1048px;
+  max-height: 1048px;
+  width: 100%;
+  height: 100%;
+}
+
+.quadrant {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  min-width: 0;
+}
+
+.image-quadrant {
+  grid-area: image;
+}
+
+.prompt-quadrant {
+  grid-area: prompt;
+}
+
+.description-quadrant {
+  grid-area: description;
+}
+
+.critic-quadrant {
+  grid-area: critic;
+}
+
+.quadrant-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+  z-index: 10;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px; /* Account for header */
+}
+
+.artwork-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.text-content {
+  padding: 40px 20px 20px 20px; /* Account for header */
+  height: 100%;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.text-content p {
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Subtle scrollbar styling */
+.text-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.text-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.text-content::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 2px;
+}
+
+.text-content::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #e0e0e0;
+    background-color: #1a1a1a;
+  }
+  
+  .museum-container {
+    background-color: #1a1a1a;
+  }
+  
+  .quadrant {
+    background-color: #2a2a2a;
+    border-color: #404040;
+  }
+  
+  .quadrant-header {
+    background-color: rgba(42, 42, 42, 0.95);
+    color: #999;
+    border-bottom-color: #404040;
+  }
+  
+  .text-content {
+    color: #d0d0d0;
+  }
+  
+  .text-content::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  
+.text-content::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Interactive elements */
+.prompt-input {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  background-color: #fafafa;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.prompt-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  background-color: #fff;
+}
+
+.prompt-input:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+}
+
+.generate-button {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.generation-input {
+  width: 66px;
+  padding: 13px 9px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  background-color: white;
+}
+
+.generation-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.style-dropdown-container {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.style-dropdown-container label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.style-dropdown {
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  min-width: 120px;
+}
+
+.style-dropdown:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.generate-button:hover:not(:disabled) {
+  background-color: #357abd;
+}
+
+.generate-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.save-session-button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.save-session-button:hover:not(:disabled) {
+  background-color: #229954;
+}
+
+.save-session-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Dark mode for interactive elements */
+@media (prefers-color-scheme: dark) {
+  .prompt-input {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #d0d0d0;
+  }
+  
+  .prompt-input:focus {
+    border-color: #4a90e2;
+    background-color: #2a2a2a;
+  }
+  
+  .prompt-input:disabled {
+    background-color: #2a2a2a;
+    color: #666;
+  }
+  
+  .loading-spinner {
+    color: #999;
+  }
+}
+}
